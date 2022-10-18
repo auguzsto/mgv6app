@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mgv6app">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="mgv6app"
         android:name="${applicationName}"

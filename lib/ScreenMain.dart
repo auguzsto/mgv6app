@@ -17,7 +17,7 @@ class _ScreenMainState extends State<ScreenMain> {
   String _prodValidade = "0";
   String _prodCarga = "0";
   var _prodAtivo = "Nenhum";
-  void _getId() async {
+  Future _getId() async {
     var dio = Dio();
     var resp = await dio.get('http://192.168.0.205:3000/api/pcod/${_id.text}');
     var jsonData = jsonDecode(resp.data);
