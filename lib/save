@@ -1,0 +1,118 @@
+padding: EdgeInsets.all(11),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 10, left: 10),
+                    child: Text(
+                      "Código do produto",
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, bottom: 5),
+                    child: Text(
+                      _prodId,
+                      style: TextStyle(color: Colors.white, fontSize: 55),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 5),
+              width: double.infinity,
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 10, left: 10),
+                    child: Text(
+                      "Estado do produto",
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, bottom: 5),
+                    child: Text(
+                      _prodAtivo,
+                      style: TextStyle(color: Colors.white, fontSize: 55),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 5),
+              width: double.infinity,
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 10, left: 10),
+                    child: Text(
+                      "Preço",
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, bottom: 5),
+                    child: Text(
+                      _prodPreco,
+                      style: TextStyle(color: Colors.white, fontSize: 55),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 5),
+              width: double.infinity,
+              decoration: BoxDecoration(color: Colors.blue),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 10, left: 10),
+                    child: Text(
+                      "Última alteração",
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, bottom: 5),
+                    child: Text(
+                      _prodCarga,
+                      style: TextStyle(color: Colors.white, fontSize: 55),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(22),
+                  child: TextField(
+                    controller: _id,
+                    onSubmitted: (value) {
+                      _getId();
+                    },
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Digite o código do produto",
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
