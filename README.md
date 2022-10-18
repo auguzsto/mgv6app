@@ -1,16 +1,7 @@
-# mgv6app
+# mgv6app-beta
 
-A new Flutter project.
+A um aplicativo com objetivo de explorar meus conhecimentos e agilizar a consulta de produtos da balança da empresa na qual trabalho.
 
-## Getting Started
+## Informações:
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Aplicativo está sendo desenvolvido em Flutter. Backend desenvolvido em NodeJS utlizando NextJS para gerar API REST, assim, consigo efetuar as consultas ao banco de dados de forma segura.
