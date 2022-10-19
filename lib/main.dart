@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mgv6app/ScreenMain.dart';
+import 'package:mgv6app/ScreenHome.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       title: "Balança",
-      home: ScreenMain(),
+      home: ScreenHome(),
     ),
   );
 }
