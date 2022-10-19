@@ -7,4 +7,4 @@ Uma aplicativo com objetivo de explorar meus conhecimentos e agilizar a consulta
 
 ## Informações:
 
-Aplicativo está sendo desenvolvido em Flutter. Backend desenvolvido em NodeJS utlizando NextJS para gerar API REST, assim, consigo efetuar as consultas ao banco de dados de forma segura.
+Aplicativo está sendo desenvolvido em Flutter. Backend desenvolvido no NodeJS utlizando NextJS para gerar API REST, assim, consigo efetuar as consultas ao banco de dados de forma segura.
