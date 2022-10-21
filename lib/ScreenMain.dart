@@ -12,14 +12,6 @@ class ScreenMain extends StatefulWidget {
 }
 
 class _ScreenMainState extends State<ScreenMain> {
-  //TextEditingController _id = TextEditingController();
-  String _prodId = "0";
-  String _prodPreco = "0";
-  String _prodDescricao = "Balança";
-  //String _prodValidade = "0";
-  String _prodCarga = "0";
-  var _prodAtivo = "Nenhum";
-
   Future<Map> _getId() async {
     var dio = Dio();
     var resp =
@@ -201,7 +193,7 @@ class _ScreenMainState extends State<ScreenMain> {
                                               fontSize: 23,
                                               fontWeight: FontWeight.w800),
                                         ),
-                                      )
+                                      ),
                                     ],
                                   ),
                                 ]
