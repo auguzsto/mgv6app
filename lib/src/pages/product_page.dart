@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mgv6app/src/models/ProductModel.dart';
 import 'package:mgv6app/src/services/http_services.dart';
+import 'package:mgv6app/src/services/utils_services.dart';
 
 class ScreenMain extends StatefulWidget {
   final String? _id;
@@ -9,6 +10,8 @@ class ScreenMain extends StatefulWidget {
   @override
   State<ScreenMain> createState() => _ScreenMainState();
 }
+
+final utilService = UtilServices();
 
 class _ScreenMainState extends State<ScreenMain> {
   @override
@@ -52,11 +55,7 @@ class _ScreenMainState extends State<ScreenMain> {
                       Padding(
                         padding: const EdgeInsets.only(left: 10, bottom: 5),
                         child: Text(
-                          productModel.name
-                              .toString()
-                              .replaceAll("\$#\$", "")
-                              .substring(0, 13)
-                              .trimLeft(),
+                          utilService.replaceName(productModel.name),
                           style:
                               const TextStyle(color: Colors.blue, fontSize: 52),
                         ),
