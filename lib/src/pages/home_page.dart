@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
 
-import 'package:mgv6app/ScreenMain.dart';
+import 'package:mgv6app/src/pages/product_page.dart';
 
 class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
@@ -100,7 +100,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                               children: [
                                 Container(
                                   alignment: Alignment.center,
-                                  padding: EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(0),
                                   width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
@@ -140,7 +140,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 ),
                                 Container(
                                   alignment: Alignment.center,
-                                  padding: EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(0),
                                   width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
@@ -180,7 +180,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 ),
                                 Container(
                                   alignment: Alignment.center,
-                                  padding: EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(0),
                                   width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
@@ -220,7 +220,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 ),
                                 Container(
                                   alignment: Alignment.center,
-                                  padding: EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(0),
                                   width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
@@ -266,7 +266,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 Container(
                                   margin: EdgeInsets.only(top: 10),
                                   alignment: Alignment.center,
-                                  padding: EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(0),
                                   width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
@@ -307,7 +307,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 Container(
                                   margin: EdgeInsets.only(top: 10),
                                   alignment: Alignment.center,
-                                  padding: EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(0),
                                   width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
@@ -348,7 +348,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 Container(
                                   margin: EdgeInsets.only(top: 10),
                                   alignment: Alignment.center,
-                                  padding: EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(0),
                                   width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
@@ -389,7 +389,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 Container(
                                   margin: EdgeInsets.only(top: 10),
                                   alignment: Alignment.center,
-                                  padding: EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(0),
                                   width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
@@ -435,7 +435,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 Container(
                                   margin: EdgeInsets.only(top: 10, right: 10),
                                   alignment: Alignment.center,
-                                  padding: EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(0),
                                   width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
@@ -476,7 +476,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 Container(
                                   margin: EdgeInsets.only(top: 10),
                                   alignment: Alignment.center,
-                                  padding: EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(0),
                                   width: 75,
                                   height: 75,
                                   decoration: BoxDecoration(
