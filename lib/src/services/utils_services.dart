@@ -12,7 +12,10 @@ class UtilServices {
   String replaceUpdate(String? date) {
     DateFormat format = DateFormat('dd/MM/yyyy HH:mm');
 
-    return format
-        .format(DateTime.parse(date!.replaceAll("T", " ").substring(0, 16)));
+    return format.format(
+      DateTime.parse(
+        date!.replaceAll("T", " ").substring(0, 16),
+      ),
+    );
   }
 }

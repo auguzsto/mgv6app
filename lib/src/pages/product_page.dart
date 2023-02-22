@@ -20,20 +20,20 @@ class _ScreenMainState extends State<ScreenMain> {
       appBar: AppBar(
         title: Text("${widget._id}"),
       ),
-      body: SingleChildScrollView(
-        child: FutureBuilder(
-          future: HttpServices.getProductById('${widget._id}'),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+      body: FutureBuilder(
+        future: HttpServices.getProductById('${widget._id}'),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
 
-            //Constructor product.
-            final productModel = ProductModel.fromJson(snapshot.data!);
+          //Constructor product.
+          final productModel = ProductModel.fromJson(snapshot.data!);
 
-            return Container(
+          return SingleChildScrollView(
+            child: Container(
               child: Column(
                 children: [
                   Container(
@@ -113,10 +113,6 @@ class _ScreenMainState extends State<ScreenMain> {
                           padding: const EdgeInsets.only(left: 10, bottom: 5),
                           child: Text(
                             utilService.replaceUpdate(productModel.update),
-                            // productModel.update
-                            //     .toString()
-                            //     .replaceAll("T", " ")
-                            //     .substring(0, 16),
                             style: const TextStyle(
                                 color: Colors.blue, fontSize: 52),
                           ),
@@ -190,9 +186,9 @@ class _ScreenMainState extends State<ScreenMain> {
                   )
                 ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }
