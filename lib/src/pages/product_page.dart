@@ -30,7 +30,7 @@ class _ScreenMainState extends State<ScreenMain> {
           }
 
           //Constructor product.
-          final productModel = ProdutModel.fromJson(snapshot.data!);
+          final productModel = ProductModel.fromJson(snapshot.data!);
 
           return Container(
             child: Column(

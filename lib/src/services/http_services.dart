@@ -9,4 +9,10 @@ class HttpServices {
         .get(Uri.parse("${Endpoints.baseUrl}${Endpoints.product}/$id"));
     return jsonDecode(response.body);
   }
+
+  static Future<List> getBalances() async {
+    final response =
+        await http.get(Uri.parse("${Endpoints.baseUrl}${Endpoints.balance}"));
+    return jsonDecode(response.body);
+  }
 }

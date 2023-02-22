@@ -1,11 +1,11 @@
-class ProdutModel {
+class ProductModel {
   int? id;
   String? name;
   double? price;
   bool? status;
   String? update;
 
-  ProdutModel({
+  ProductModel({
     this.id,
     this.name,
     this.price,
@@ -13,8 +13,8 @@ class ProdutModel {
     this.update,
   });
 
-  factory ProdutModel.fromJson(Map<String, dynamic> map) {
-    return ProdutModel(
+  factory ProductModel.fromJson(Map<String, dynamic> map) {
+    return ProductModel(
       id: map['ITN_CODIGO'],
       name: map['ITN_DESCRITIVO'],
       price: map['ITN_PRECO'],

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
-import 'dart:convert';
-
+import 'package:mgv6app/src/models/BalanceModel.dart';
 import 'package:mgv6app/src/pages/product_page.dart';
+import 'package:mgv6app/src/services/http_services.dart';
 
 class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
@@ -12,13 +11,8 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
-  Future _getBalances() async {
-    var dio = Dio();
-    var resp = await dio.get("http://192.168.0.205:3000/api/balanca/");
-    return jsonDecode(resp.data);
-  }
-
   TextEditingController _id = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +28,7 @@ class _ScreenHomeState extends State<ScreenHome> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32),
           color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -49,8 +43,8 @@ class _ScreenHomeState extends State<ScreenHome> {
                 },
                 controller: _id,
                 keyboardType: TextInputType.number,
-                style: TextStyle(fontSize: 16),
-                decoration: InputDecoration(
+                style: const TextStyle(fontSize: 16),
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Digite aqui o código do produto",
                   prefixIcon: Icon(
@@ -59,511 +53,73 @@ class _ScreenHomeState extends State<ScreenHome> {
                   ),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => ScreenMain(_id.text))));
-                },
-                child: Text(
-                  "Consultar",
-                  style: TextStyle(fontSize: 16),
+              const SizedBox(
+                height: 5,
+              ),
+              SizedBox(
+                height: 40,
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.search),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => ScreenMain(_id.text))));
+                  },
+                  label: const Text(
+                    "Consultar",
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
+              const SizedBox(
+                height: 5,
+              ),
               FutureBuilder(
-                future: _getBalances(),
+                future: HttpServices.getBalances(),
                 builder: (context, snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.none:
-                      return Text(
-                          "Ocorreu um erro na comunicação com o servidor.");
-                    case ConnectionState.active:
-                    case ConnectionState.waiting:
-                      return Container(
-                        height: MediaQuery.of(context).size.height * 0.5,
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.blue,
-                          ),
-                        ),
-                      );
-                    case ConnectionState.done:
-                      return Container(
-                        height: MediaQuery.of(context).size.height * 0.5,
-                        //decoration: BoxDecoration(border: Border.all()),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.all(0),
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.white,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (snapshot.data![0]['BAL_ESTADO']
-                                              .toString() ==
-                                          "1") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.blue,
-                                          size: 45,
-                                        )
-                                      ] else if (snapshot.data![0]['BAL_ESTADO']
-                                              .toString() ==
-                                          "2") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.orange,
-                                          size: 45,
-                                        ),
-                                      ] else ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.red,
-                                          size: 45,
-                                        ),
-                                      ],
-                                      Text("01"),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.all(0),
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.white,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (snapshot.data![1]['BAL_ESTADO']
-                                              .toString() ==
-                                          "1") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.blue,
-                                          size: 45,
-                                        )
-                                      ] else if (snapshot.data![1]['BAL_ESTADO']
-                                              .toString() ==
-                                          "2") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.orange,
-                                          size: 45,
-                                        ),
-                                      ] else ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.red,
-                                          size: 45,
-                                        ),
-                                      ],
-                                      Text("02"),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.all(0),
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.white,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (snapshot.data![2]['BAL_ESTADO']
-                                              .toString() ==
-                                          "1") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.blue,
-                                          size: 45,
-                                        )
-                                      ] else if (snapshot.data![2]['BAL_ESTADO']
-                                              .toString() ==
-                                          "2") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.orange,
-                                          size: 45,
-                                        ),
-                                      ] else ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.red,
-                                          size: 45,
-                                        ),
-                                      ],
-                                      Text("03"),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.all(0),
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.white,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (snapshot.data![3]['BAL_ESTADO']
-                                              .toString() ==
-                                          "1") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.blue,
-                                          size: 45,
-                                        )
-                                      ] else if (snapshot.data![3]['BAL_ESTADO']
-                                              .toString() ==
-                                          "2") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.orange,
-                                          size: 45,
-                                        ),
-                                      ] else ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.red,
-                                          size: 45,
-                                        ),
-                                      ],
-                                      Text("04"),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(top: 10),
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.all(0),
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.white,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (snapshot.data![4]['BAL_ESTADO']
-                                              .toString() ==
-                                          "1") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.blue,
-                                          size: 45,
-                                        )
-                                      ] else if (snapshot.data![4]['BAL_ESTADO']
-                                              .toString() ==
-                                          "2") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.orange,
-                                          size: 45,
-                                        ),
-                                      ] else ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.red,
-                                          size: 45,
-                                        ),
-                                      ],
-                                      Text("05"),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(top: 10),
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.all(0),
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.white,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (snapshot.data![5]['BAL_ESTADO']
-                                              .toString() ==
-                                          "1") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.blue,
-                                          size: 45,
-                                        )
-                                      ] else if (snapshot.data![5]['BAL_ESTADO']
-                                              .toString() ==
-                                          "2") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.orange,
-                                          size: 45,
-                                        ),
-                                      ] else ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.red,
-                                          size: 45,
-                                        ),
-                                      ],
-                                      Text("06"),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(top: 10),
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.all(0),
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.white,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (snapshot.data![6]['BAL_ESTADO']
-                                              .toString() ==
-                                          "1") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.blue,
-                                          size: 45,
-                                        )
-                                      ] else if (snapshot.data![6]['BAL_ESTADO']
-                                              .toString() ==
-                                          "2") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.orange,
-                                          size: 45,
-                                        ),
-                                      ] else ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.red,
-                                          size: 45,
-                                        ),
-                                      ],
-                                      Text("07"),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(top: 10),
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.all(0),
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.white,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (snapshot.data![7]['BAL_ESTADO']
-                                              .toString() ==
-                                          "1") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.blue,
-                                          size: 45,
-                                        )
-                                      ] else if (snapshot.data![7]['BAL_ESTADO']
-                                              .toString() ==
-                                          "2") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.orange,
-                                          size: 45,
-                                        ),
-                                      ] else ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.red,
-                                          size: 45,
-                                        ),
-                                      ],
-                                      Text("08"),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: GridView.count(
+                      crossAxisCount: 5,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5,
+                      children: List.generate(
+                        snapshot.data!.length,
+                        (index) {
+                          //Constructor balances
+                          final balances =
+                              BalanceModel.fromJson(snapshot.data![index]);
+
+                          return Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.blue),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  margin: EdgeInsets.only(top: 10, right: 10),
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.all(0),
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.white,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (snapshot.data![8]['BAL_ESTADO']
-                                              .toString() ==
-                                          "1") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.blue,
-                                          size: 45,
-                                        )
-                                      ] else if (snapshot.data![8]['BAL_ESTADO']
-                                              .toString() ==
-                                          "2") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.orange,
-                                          size: 45,
-                                        ),
-                                      ] else ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.red,
-                                          size: 45,
-                                        ),
-                                      ],
-                                      Text("09"),
-                                    ],
-                                  ),
+                                Icon(
+                                  Icons.signal_wifi_4_bar,
+                                  color: balances.status == 1
+                                      ? Colors.blue
+                                      : balances.status == 2
+                                          ? Colors.orange
+                                          : Colors.red,
                                 ),
-                                Container(
-                                  margin: EdgeInsets.only(top: 10),
-                                  alignment: Alignment.center,
-                                  padding: EdgeInsets.all(0),
-                                  width: 75,
-                                  height: 75,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.blue),
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.white,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      if (snapshot.data![9]['BAL_ESTADO']
-                                              .toString() ==
-                                          "1") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.blue,
-                                          size: 45,
-                                        )
-                                      ] else if (snapshot.data![9]['BAL_ESTADO']
-                                              .toString() ==
-                                          "2") ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.orange,
-                                          size: 45,
-                                        ),
-                                      ] else ...[
-                                        Icon(
-                                          Icons.signal_wifi_4_bar_outlined,
-                                          color: Colors.red,
-                                          size: 45,
-                                        ),
-                                      ],
-                                      Text("10"),
-                                    ],
-                                  ),
-                                )
+                                Text("${balances.id}")
                               ],
                             ),
-                            Row(
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(""),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          width: 10,
-                                          height: 10,
-                                          decoration:
-                                              BoxDecoration(color: Colors.blue),
-                                        ),
-                                        Text(" Balança atualizada"),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          width: 10,
-                                          height: 10,
-                                          decoration:
-                                              BoxDecoration(color: Colors.red),
-                                        ),
-                                        Text(" Balança desligada"),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          width: 10,
-                                          height: 10,
-                                          decoration: BoxDecoration(
-                                              color: Colors.orange),
-                                        ),
-                                        Text(" Balança desatualizada"),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                  }
+                          );
+                        },
+                      ),
+                    ),
+                  );
                 },
               ),
             ],
@@ -572,10 +128,10 @@ class _ScreenHomeState extends State<ScreenHome> {
       ),
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: [
+        children: const [
           Padding(
             padding: EdgeInsets.all(18),
-            child: Text("Beta 0.06"),
+            child: Text("Release 1.02"),
           )
         ],
       ),
