@@ -1,9 +1,9 @@
-# mgv6app-beta
+# mgv6app
 
 Uma aplicativo com objetivo de explorar meus conhecimentos e agilizar a consulta de produtos da balança da empresa na qual trabalho.
 
 ## Screenshots
-<div align="center"><img src="https://i.imgur.com/EbIx9D8.gif"></div>
+<div align="center"><img src="https://i.imgur.com/ML5HYxw.png"></div>
 
 ## Informações:
 
