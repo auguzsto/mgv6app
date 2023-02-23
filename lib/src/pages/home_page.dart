@@ -11,7 +11,8 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
-  TextEditingController _id = TextEditingController();
+  final _id = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,22 +35,24 @@ class _ScreenHomeState extends State<ScreenHome> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextField(
-                onSubmitted: (value) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => ScreenMain(_id.text))));
-                },
-                controller: _id,
-                keyboardType: TextInputType.number,
-                style: const TextStyle(fontSize: 16),
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Digite aqui o código do produto",
-                  prefixIcon: Icon(
-                    Icons.search,
-                    size: 32,
+              Form(
+                key: _formKey,
+                child: TextFormField(
+                  validator: (value) {
+                    return value!.isEmpty
+                        ? "É necessário digitar o código do produto."
+                        : null;
+                  },
+                  controller: _id,
+                  keyboardType: TextInputType.number,
+                  style: const TextStyle(fontSize: 16),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Digite aqui o código do produto",
+                    prefixIcon: Icon(
+                      Icons.search,
+                      size: 32,
+                    ),
                   ),
                 ),
               ),
@@ -61,10 +64,12 @@ class _ScreenHomeState extends State<ScreenHome> {
                 child: ElevatedButton.icon(
                   icon: const Icon(Icons.search),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => ScreenMain(_id.text))));
+                    _formKey.currentState!.validate()
+                        ? Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => ScreenMain(_id.text))))
+                        : null;
                   },
                   label: const Text(
                     "Consultar",
@@ -75,6 +80,8 @@ class _ScreenHomeState extends State<ScreenHome> {
               const SizedBox(
                 height: 5,
               ),
+
+              //Status balances.
               FutureBuilder(
                 future: HttpServices.getBalances(),
                 builder: (context, snapshot) {
