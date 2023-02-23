@@ -16,6 +16,7 @@ class _ScreenHomeState extends State<ScreenHome> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -94,7 +95,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                   return SizedBox(
                     height: MediaQuery.of(context).size.height,
                     child: GridView.count(
-                      crossAxisCount: 5,
+                      crossAxisCount: 3,
                       crossAxisSpacing: 5,
                       mainAxisSpacing: 5,
                       children: List.generate(
@@ -112,6 +113,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(
+                                  size: size.height / 15,
                                   Icons.signal_wifi_4_bar,
                                   color: balances.status == 1
                                       ? Colors.blue
@@ -119,7 +121,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                                           ? Colors.orange
                                           : Colors.red,
                                 ),
-                                Text("${balances.id}")
+                                Text("Balança ${balances.id}")
                               ],
                             ),
                           );
