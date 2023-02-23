@@ -3,7 +3,7 @@
 Uma aplicativo com objetivo de explorar meus conhecimentos e agilizar a consulta de produtos da balança da empresa na qual trabalho.
 
 ## Screenshots
-<div align="center"><img src="https://i.imgur.com/ML5HYxw.png"></div>
+<div align="center"><img src="https://i.imgur.com/0IcFdpi.png"></div>
 
 ## Informações:
 
