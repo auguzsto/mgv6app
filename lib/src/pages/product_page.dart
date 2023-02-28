@@ -175,7 +175,7 @@ class _ScreenMainState extends State<ScreenMain> {
                         const Padding(
                           padding: EdgeInsets.only(top: 12, left: 12, right: 8),
                           child: Text(
-                            "Unidade de venda.",
+                            "Tipo de embalagem",
                             style: TextStyle(color: Colors.blue, fontSize: 16),
                           ),
                         ),
