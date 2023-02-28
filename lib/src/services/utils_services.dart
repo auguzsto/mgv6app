@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class UtilServices {
@@ -16,6 +17,31 @@ class UtilServices {
       DateTime.parse(
         date!.replaceAll("T", " ").substring(0, 16),
       ),
+    );
+  }
+
+  String typeItem(int type) {
+    if (type != 0) {
+      return "Unidade";
+    }
+
+    return "Peso";
+  }
+
+  Future showAlertType(
+      String title, String content, Icon icon, BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          icon: icon,
+          title: Text(title),
+          content: Container(
+            padding: const EdgeInsets.all(8),
+            child: Text(content),
+          ),
+        );
+      },
     );
   }
 }

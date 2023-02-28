@@ -46,90 +46,6 @@ class _ScreenMainState extends State<ScreenMain> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 12, left: 12, right: 8),
-                          child: Text(
-                            "Descrição do produto",
-                            style: TextStyle(color: Colors.blue, fontSize: 16),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, bottom: 5),
-                          child: Text(
-                            utilService.replaceName(productModel.name),
-                            style: const TextStyle(
-                                color: Colors.blue, fontSize: 52),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(8),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.blue),
-                        borderRadius: BorderRadius.circular(11)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 12, left: 12, right: 8),
-                          child: Text(
-                            "Preço",
-                            style: TextStyle(color: Colors.blue, fontSize: 16),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, bottom: 5),
-                          child: Text(
-                            "R\$ ${utilService.replacePrice(productModel.price)} KG",
-                            style: const TextStyle(
-                                color: Colors.blue, fontSize: 52),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(8),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.blue),
-                        borderRadius: BorderRadius.circular(11)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 12, left: 12, right: 8),
-                          child: Text(
-                            "Data e hora da última alteração",
-                            style: TextStyle(color: Colors.blue, fontSize: 16),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, bottom: 5),
-                          child: Text(
-                            utilService.replaceUpdate(productModel.update),
-                            style: const TextStyle(
-                                color: Colors.blue, fontSize: 52),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(8),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Colors.blue),
-                        borderRadius: BorderRadius.circular(11)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
                         Padding(
                           padding: const EdgeInsets.only(
                               left: 10, bottom: 10, top: 10),
@@ -183,7 +99,157 @@ class _ScreenMainState extends State<ScreenMain> {
                         ),
                       ],
                     ),
-                  )
+                  ),
+
+                  //Description.
+                  Container(
+                    margin: const EdgeInsets.all(8),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.blue),
+                        borderRadius: BorderRadius.circular(11)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 12, left: 12, right: 8),
+                          child: Text(
+                            "Descrição do produto",
+                            style: TextStyle(color: Colors.blue, fontSize: 16),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, bottom: 5),
+                          child: Text(
+                            utilService.replaceName(productModel.name),
+                            style: const TextStyle(
+                                color: Colors.blue, fontSize: 52),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  //Price
+                  Container(
+                    margin: const EdgeInsets.all(8),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.blue),
+                        borderRadius: BorderRadius.circular(11)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 12, left: 12, right: 8),
+                          child: Text(
+                            "Preço",
+                            style: TextStyle(color: Colors.blue, fontSize: 16),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, bottom: 5),
+                          child: Text(
+                            "R\$ ${utilService.replacePrice(productModel.price)} KG",
+                            style: const TextStyle(
+                                color: Colors.blue, fontSize: 52),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  //Type
+                  Container(
+                    margin: const EdgeInsets.all(8),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.blue),
+                        borderRadius: BorderRadius.circular(11)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 12, left: 12, right: 8),
+                          child: Text(
+                            "Unidade de venda.",
+                            style: TextStyle(color: Colors.blue, fontSize: 16),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10, bottom: 5, right: 15),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                utilService.typeItem(productModel.type!),
+                                style: const TextStyle(
+                                    color: Colors.blue, fontSize: 52),
+                              ),
+                              productModel.type != 0
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        utilService.showAlertType(
+                                            "Há um problema!",
+                                            "Altere o tipo de embalagem para PESO na 2014",
+                                            const Icon(
+                                              Icons.error_rounded,
+                                              size: 38,
+                                              color: Colors.red,
+                                            ),
+                                            context);
+                                      },
+                                      child: const Icon(
+                                        Icons.error,
+                                        color: Colors.red,
+                                        size: 68,
+                                      ),
+                                    )
+                                  : const Icon(
+                                      Icons.check,
+                                      color: Colors.green,
+                                      size: 68,
+                                    ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  //Date and hours.
+                  Container(
+                    margin: const EdgeInsets.all(8),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.blue),
+                        borderRadius: BorderRadius.circular(11)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 12, left: 12, right: 8),
+                          child: Text(
+                            "Data e hora da última alteração",
+                            style: TextStyle(color: Colors.blue, fontSize: 16),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, bottom: 5),
+                          child: Text(
+                            utilService.replaceUpdate(productModel.update),
+                            style: const TextStyle(
+                                color: Colors.blue, fontSize: 52),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
