@@ -28,6 +28,14 @@ class UtilServices {
     return "Peso";
   }
 
+  bool notFoundProduct(AsyncSnapshot<Map<String, dynamic>> snapshot) {
+    if (!snapshot.toString().contains("Not found")) {
+      return false;
+    }
+
+    return true;
+  }
+
   Future showAlertType(
       String title, String content, Icon icon, BuildContext context) async {
     return showDialog(

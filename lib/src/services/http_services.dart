@@ -7,7 +7,12 @@ class HttpServices {
   static Future<Map<String, dynamic>> getProductById(id) async {
     final response = await http
         .get(Uri.parse("${Endpoints.baseUrl}${Endpoints.product}/$id"));
-    return jsonDecode(response.body);
+
+    if (response.body.isNotEmpty) {
+      return jsonDecode(response.body);
+    }
+
+    return jsonDecode("Not found");
   }
 
   static Future<List> getBalances() async {
